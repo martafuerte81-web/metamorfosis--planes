@@ -209,13 +209,13 @@ def get_exercises(nivel, equipo, grupo):
     return exs, series, descanso
 
 def calcular_nutricion(datos):
-    peso   = float(datos.get('peso', 75))
-    altura = float(datos.get('altura', 170))
-    edad   = int(datos.get('edad', 40))
+    peso   = float(datos.get('peso', 75) or 75)
+    altura = float(datos.get('altura', 170) or 170)
+    edad   = int(datos.get('edad', 40) or 40)
     sexo   = datos.get('sexo', 'Hombre')
     objetivo = datos.get('objetivo', 'Perder grasa').lower()
     trabajo  = datos.get('tipoTrabajo', 'Sedentario').lower()
-    dias     = int(datos.get('diasEntreno', 4))
+    dias     = int(datos.get('diasEntreno', 4) or 4)
 
     if 'hombre' in sexo.lower():
         tmb = round(10*peso + 6.25*altura - 5*edad + 5)
@@ -288,8 +288,8 @@ def generar_pdf(datos, output_path):
     equipo = n.get('equipo', 'Gimnasio completo')
     nombre = n.get('nombre', 'Cliente')
     objetivo = n.get('objetivo', 'Perder grasa')
-    estres = int(n.get('nivelEstres', 3))
-    sueno  = float(n.get('horasSueno', 7))
+    estres = int(n.get('nivelEstres', 3) or 3)
+    sueno  = float(n.get('horasSueno', 7) or 7)
     dias_pref = n.get('diasPreferidos', 'Lunes, Martes, Jueves, Viernes')
 
     story = []
